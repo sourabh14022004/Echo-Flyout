@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- Windows-targeted TFM: this is what makes Windows.Media.Control (SMTC) available
+         to C# without any extra NuGet package - .NET auto-generates the WinRT projection. -->
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <UseWPF>true</UseWPF>
+    <!-- Needed only for NotifyIcon (WPF has no native tray-icon API) -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TaskbarMediaWidget</RootNamespace>
+    <AssemblyName>TaskbarMediaWidget</AssemblyName>
+    <Platforms>x64;ARM64</Platforms>
+    <Product>Echo Flyout</Product>
+    <AssemblyTitle>Echo Flyout</AssemblyTitle>
+    <Title>Echo Flyout</Title>
+    <Description>Echo Flyout - Windows 11 Taskbar Media Controller</Description>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\app.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Fluent controls for the settings dashboard (NavigationView sidebar, cards, toggles) —
+         the same library FluentFlyout uses for its settings UI. -->
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Echo Flyout — Settings</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <nav class="sidebar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Echo Flyout</span>
+      </div>
+      <button class="nav-item active" data-page="home">Home</button>
+      <button class="nav-item" data-page="widget">Taskbar Widget</button>
+      <button class="nav-item" data-page="flyout">Next Track Flyout</button>
+      <button class="nav-item" data-page="system">System</button>
+      <div class="nav-spacer"></div>
+      <button class="nav-item nav-item-secondary" data-page="about">About</button>
+    </nav>
+
+    <main class="content">
+      <!-- Home -->
+      <section class="page active" id="page-home">
+        <h1>Home</h1>
+        <div class="card hero-card">
+          <div>
+            <h2>Echo Flyout</h2>
+            <p>Settings on this page apply live to the running widget — no restart needed.</p>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <button class="tile" data-goto="widget">
+            <div class="tile-title">Taskbar Widget</div>
+            <div class="tile-sub">Opacity, auto-hide, dock side</div>
+          </button>
+          <button class="tile" data-goto="flyout">
+            <div class="tile-title">Next Track Flyout</div>
+            <div class="tile-sub">Position, duration</div>
+          </button>
+          <button class="tile" data-goto="system">
+            <div class="tile-title">System</div>
+            <div class="tile-sub">Display, startup</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Taskbar Widget -->
+      <section class="page" id="page-widget">
+        <h1>Taskbar Widget</h1>
+
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <div class="card-label">Opacity</div>
+              <div class="card-hint">Background opacity of the docked widget</div>
+            </div>
+            <div class="card-value" id="opacity-value">85%</div>
+          </div>
+          <input type="range" id="opacity-slider" min="30" max="100" value="85" />
+        </div>
+
+        <div class="card">
+          <div class="card-label">Auto-hide after inactivity</div>
+          <div class="card-hint">How long to wait after playback pauses/stops before the widget disappears</div>
+          <div class="chip-row" id="idle-presets">
+            <button class="chip" data-seconds="60">1 min</button>
+            <button class="chip" data-seconds="300">5 min</button>
+            <button class="chip" data-seconds="600">10 min</button>
+            <button class="chip" data-seconds="0">Permanent</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Dock side</div>
+          <div class="card-hint">Which side of the taskbar the widget hugs</div>
+          <div class="segmented" id="dock-side">
+            <button class="segment" data-value="Tray">Near system tray</button>
+            <button class="segment" data-value="Start">Near Start button</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <div class="card-label">Idle animation</div>
+              <div class="card-hint">Show an animated mascot when nothing is playing, instead of a plain text row</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="idle-animation-toggle" />
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next Track Flyout -->
+      <section class="page" id="page-flyout">
+        <h1>Next Track Flyout</h1>
+
+        <div class="card">
+          <div class="card-label">Position</div>
+          <div class="card-hint">Which screen corner the "now playing" popup appears in</div>
+          <div class="corner-grid" id="corner-grid">
+            <button class="corner" data-value="TopLeft">↖ Top-left</button>
+            <button class="corner" data-value="TopRight">↗ Top-right</button>
+            <button class="corner" data-value="BottomLeft">↙ Bottom-left</button>
+            <button class="corner" data-value="BottomRight">↘ Bottom-right</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Duration</div>
+          <div class="card-hint">How long the flyout stays on screen before fading out</div>
+          <div class="chip-row" id="flyout-duration-presets">
+            <button class="chip" data-seconds="2">2s</button>
+            <button class="chip" data-seconds="4">4s</button>
+            <button class="chip" data-seconds="6">6s</button>
+            <button class="chip" data-seconds="8">8s</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- System -->
+      <section class="page" id="page-system">
+        <h1>System</h1>
+
+        <div class="card">
+          <div class="card-label">Display</div>
+          <div class="card-hint">Which monitor's taskbar the widget docks to</div>
+          <div class="list" id="display-list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-row">
+            <div>
+              <div class="card-label">Start with Windows</div>
+              <div class="card-hint">Launch the widget automatically at sign-in</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="startup-toggle" />
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+          <div class="card-hint" id="startup-status"></div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="page" id="page-about">
+        <h1>About</h1>
+        <div class="card">
+          <div class="card-label">Echo Flyout</div>
+          <div class="card-hint" id="about-version"></div>
+          <p class="about-text">
+            A Windows 11 media controller that docks flush against the real taskbar, using the
+            System Media Transport Controls API. This dashboard is a separate app that edits the
+            widget's shared settings file — changes here apply to the running widget live.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

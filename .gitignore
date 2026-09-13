@@ -1,0 +1,28 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+
+# Visual Studio / Rider / IDE cache
+.vs/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+.vscode/
+
+# Claude / AI tooling local config
+.claude/
+
+# Node / Electron prototype
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS generated files
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
