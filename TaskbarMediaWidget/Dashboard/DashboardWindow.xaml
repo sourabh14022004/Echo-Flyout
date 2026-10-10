@@ -1073,6 +1073,27 @@
                                     </WrapPanel>
                                 </StackPanel>
                             </Border>
+
+                            <!-- About Myself Card -->
+                            <Border Style="{StaticResource GlassCard}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Width="36" Height="36" CornerRadius="18"
+                                            Background="#154CC2FF" BorderBrush="#354CC2FF" BorderThickness="1"
+                                            Margin="0,0,14,0">
+                                        <Path Data="M 12,12 C 14.21,12 16,10.21 16,8 C 16,5.79 14.21,4 12,4 C 9.79,4 8,5.79 8,8 C 8,10.21 9.79,12 12,12 Z M 12,14 C 9.33,14 4,15.34 4,18 L 4,20 L 20,20 L 20,18 C 20,15.34 14.67,14 12,14 Z"
+                                              Fill="#4CC2FF" Stretch="Uniform" Width="15" Height="15"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="About Myself" Style="{StaticResource CardHeader}"/>
+                                        <TextBlock Text="Made for hobby and laziness by Sourabh." Style="{StaticResource CardSubtext}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>

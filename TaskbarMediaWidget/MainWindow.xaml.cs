@@ -204,7 +204,7 @@ public partial class MainWindow : Window
         IntPtr monitor = ResolveTargetMonitor();
         Rect workArea = DisplayManager.GetWorkAreaBounds(monitor);
         const double flyoutWidth = 320;
-        const double flyoutHeight = 96;
+        const double flyoutHeight = 102;
         const double margin = 16;
 
         Point position = _settings.FlyoutPosition switch

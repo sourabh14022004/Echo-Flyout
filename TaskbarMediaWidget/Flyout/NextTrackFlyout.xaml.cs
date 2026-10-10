@@ -14,7 +14,7 @@ namespace TaskbarMediaWidget.Flyout;
 /// the app's lifetime — repeated track changes while it's already visible just refresh the
 /// content and reset the dismiss timer instead of stacking a second popup.
 /// </summary>
-public partial class NextTrackFlyout : Wpf.Ui.Controls.FluentWindow
+public partial class NextTrackFlyout : Window
 {
     private readonly DispatcherTimer _dismissTimer;
     private bool _isShown;
@@ -28,9 +28,6 @@ public partial class NextTrackFlyout : Wpf.Ui.Controls.FluentWindow
 
         _dismissTimer = new DispatcherTimer();
         _dismissTimer.Tick += (_, _) => Dismiss();
-
-        // Must run before the window is first composited, or DWM frosts the acrylic in light mode.
-        SourceInitialized += (_, _) => WindowStyler.SetDarkMode(this, true);
 
         Loaded += (_, _) => WindowStyler.MakeToolWindow(this);
     }

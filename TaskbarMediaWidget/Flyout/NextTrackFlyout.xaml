@@ -1,48 +1,22 @@
-<ui:FluentWindow x:Class="TaskbarMediaWidget.Flyout.NextTrackFlyout"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-                 Title="Now Playing"
-                 Icon="/Assets/app.ico"
-                 Width="330" Height="104"
-                 MinWidth="0" MinHeight="0"
-                 SizeToContent="Manual"
-                 WindowStyle="None"
-                 WindowBackdropType="Acrylic"
-                 WindowCornerPreference="Round"
-                 ExtendsContentIntoTitleBar="True"
-                 Background="Transparent"
-                 ResizeMode="NoResize"
-                 ShowInTaskbar="False"
-                 WindowStartupLocation="Manual"
-                 Topmost="True"
-                 Focusable="False"
-                 ShowActivated="False">
-    <!-- FluentWindow gets its control template from WPF-UI's theme dictionaries. Without these
-         merged in, the default style never resolves, the window ends up with no template — and so
-         no ContentPresenter — and renders as a blank grey slab no matter what the content is.
-         Scoped to this window (not App.xaml) so the implicit Fluent styles can't reach the
-         taskbar widget. -->
-    <ui:FluentWindow.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ui:ThemesDictionary Theme="Dark"/>
-                <ui:ControlsDictionary/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ui:FluentWindow.Resources>
-
-    <!-- Same recipe as the dashboard: an Acrylic backdrop with a Transparent window background so
-         DWM frosts whatever is behind, and the dark-mode flag set in SourceInitialized (before the
-         first composition) so that frost renders dark rather than washing the wallpaper through
-         the light-on-glass text. -->
-
-    <!-- CornerRadius must match the radius DWM clips the window to (WindowCornerPreference="Round"
-         == 8 device pixels). Any larger and the crescent between the card's arc and the window's
-         clip exposes the bare backdrop as a pale halo around each corner; any smaller and the
-         backdrop shows as a squared-off shoulder. UseLayoutRounding keeps the 1px hairline border
-         from smearing across two device pixels on fractional-DPI displays. -->
-    <Border x:Name="RootBorder" Width="320" CornerRadius="8" Padding="16" Opacity="0"
+<Window x:Class="TaskbarMediaWidget.Flyout.NextTrackFlyout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Now Playing"
+        Icon="/Assets/app.ico"
+        Width="320" Height="102"
+        MinWidth="0" MinHeight="0"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="Manual"
+        Topmost="True"
+        Focusable="False"
+        ShowActivated="False">
+    <!-- Using standard WPF layered window transparency (AllowsTransparency="True" + Background="Transparent")
+         so the popup card renders with clean anti-aliased rounded corners and no outer gray DWM acrylic halo. -->
+    <Border x:Name="RootBorder" Width="320" Height="102" CornerRadius="8" Padding="16" Opacity="0"
             BorderThickness="1" UseLayoutRounding="True" SnapsToDevicePixels="True">
         <!-- Darker than the dashboard's cards on purpose: those sit on the dashboard's own tinted
              veil, whereas this popup sits directly on whatever happens to be on screen, so it has
@@ -108,4 +82,4 @@
             </StackPanel>
         </Grid>
     </Border>
-</ui:FluentWindow>
+</Window>
